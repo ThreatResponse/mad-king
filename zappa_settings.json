@@ -1,6 +1,10 @@
 {
     "production": {
-        "app_function": "app.app", 
-        "s3_bucket": "zappa-ao8u902x9"
+	"project_name": "mad king",
+        "app_function": "mad_king.app", 
+        "s3_bucket": "zappa-ao8u902x9",
+	"manage_roles": true,
+	"attach_policy": "ComplianceRole1337.json",
+	"role_name": "ComplianceRole1337"
     }
 }
