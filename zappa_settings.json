@@ -1,0 +1,6 @@
+{
+    "production": {
+        "app_function": "app.app", 
+        "s3_bucket": "zappa-ao8u902x9"
+    }
+}
