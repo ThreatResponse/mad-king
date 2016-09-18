@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="mui--appbar-height"></div>
+<br>
+<br>
+<div class="mui--text-display2">AWS Account Recon</div>
+<br>
+<br>
+<button class="mui-btn mui-btn--raised">Burn them all?</button>
+<br><br><br>
+
+<h3> Running with Stolen Credentials From</h3>
+    <br>
+    <br>Account Id : {{ who.identity['Account'] }}
+    <br>UserId {{ who.identity['UserId'] }}
+    <br>Arn {{ who.identity['Arn'] }}
+
+
+
+
+<h3> Regions with Running Instances </h3>
+{% for region in instances %}
+{% if instances[region]|length > 1 %}
+<a href="#{{ region }}">{{ region }}</a>
+{% endif %}
+{% endfor %}
+
+<hr></hr>
+
+
+{% for region in instances %}
+  {% if instances[region]|length > 1 %}
+  <h4 id={{ region }}> {{ region }} </h4>
+
+    <table class="mui-table mui-table--bordered">
+      <thead>
+        <tr>
+          <th>instance-id</th>
+          <th>instance-ip</th>
+          <th>Demonstrate your Power?</th>
+          <th>Burn It?</th>
+        </tr>
+      </thead>
+      <tbody>
+      {% for instance in instances[region] %}
+        <tr>
+          <td>{{ instance['instance_id'] }}</td>
+          <td>{{ instance['public_ip_address'] }}</td>
+          <td><button class="mui-btn mui-btn--accent">Stop Instance</button></td>
+          <td><button class="mui-btn mui-btn--danger">Terminate</button></td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+  {% endif %}
+{% endfor %}
+
+
+
+{% endblock %}
