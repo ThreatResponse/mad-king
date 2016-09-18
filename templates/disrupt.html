@@ -10,7 +10,28 @@
 <button class="mui-btn mui-btn--raised">Burn them all?</button>
 <br><br><br>
 
-
+<table class="mui-table mui-table--bordered">
+  <thead>
+    <tr>
+      <th>Trail</th>
+      <th>Name</th>
+      <th>Stop Trail</th>
+      <th>Delete Trail</th>
+      <th>Encrypt Trail</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for trail in trails['trailList'] %}
+    <tr>
+      <td>{{ trail['TrailARN'] }}</td>
+      <td>{{ trail['Name'] }}</td>
+      <td><button class="mui-btn mui-btn--primary">Stop</button></td>
+      <td><button class="mui-btn mui-btn--accent">Delete</button></td>
+      <td><button class="mui-btn mui-btn--danger">Encrypt</button></td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
 
 
 

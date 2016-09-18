@@ -13,6 +13,11 @@ def recon():
     instances = inventory.Instance().get_all_running()
     return render_template('recon.html', instances=instances, who=who)
 
+@app.route('/disrupt')
+def disrupt():
+    trails = inventory.CloudTrail().get_trails()
+    return render_template('disrupt.html', trails=trails)
+
 # We only need this for local development.
 if __name__ == '__main__':
     app.run()

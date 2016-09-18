@@ -65,3 +65,14 @@ class Who(object):
     def __init__(self):
         self.client = boto3.client('sts')
         self.identity = self.client.get_caller_identity()
+
+
+class CloudTrail(object):
+    def __init__(self):
+        self.client = boto3.client('cloudtrail', 'us-west-2')
+
+    def get_trails(self):
+        response = self.client.describe_trails(
+            includeShadowTrails=True
+        )
+        return response
