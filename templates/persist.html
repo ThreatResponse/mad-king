@@ -10,7 +10,22 @@
 <button class="mui-btn mui-btn--raised">Burn them all?</button>
 <br><br><br>
 
-
-
+<div class="mui--text-display2">
+<table class="mui-table mui-table--bordered">
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Get-New StS Credential?</th>
+    </tr>
+    <tbody>
+      {% for user in persist.users %}
+      <tr>
+        <td>{{ user}}</td>
+        <td><button class="mui-btn mui-btn--accent">Get Credential</button></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+</thead>
+</div>
 
 {% endblock %}

