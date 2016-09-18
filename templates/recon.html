@@ -7,8 +7,7 @@
 <div class="mui--text-display2">AWS Account Recon</div>
 <br>
 <br>
-<button class="mui-btn mui-btn--raised">Burn them all?</button>
-<br><br><br>
+<a href="/burn/all" class="mui-btn mui-btn--raised">Burn them all?</a><br><br><br>
 
 <h3> Running with Stolen Credentials From</h3>
     <br>
@@ -48,7 +47,7 @@
           <td>{{ instance['instance_id'] }}</td>
           <td>{{ instance['public_ip_address'] }}</td>
           <td><button class="mui-btn mui-btn--accent">Stop Instance</button></td>
-          <td><button class="mui-btn mui-btn--danger">Terminate</button></td>
+          <td><button class="mui-btn mui-btn--danger" onClick="parent.location='/burn/{{ instance['instance_id'] }}/{{ region }}'">Terminate</button></td>
         </tr>
       {% endfor %}
       </tbody>

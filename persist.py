@@ -57,3 +57,11 @@ class Persistence(object):
             return response
         except ClientError as e:
             print("  " + e.response['Error']['Message'])
+
+    def backdoor_sts(self):
+        client = boto3.client('sts')
+        try:
+            response = client.get_session_token()
+            return response
+        except ClientError as e:
+            pass

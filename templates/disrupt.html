@@ -7,12 +7,12 @@
 <div class="mui--text-display2">AWS Logging Disruption</div>
 <br>
 <br>
-<button class="mui-btn mui-btn--raised">Burn them all?</button>
-<br><br><br>
+<a href="/burn/all" class="mui-btn mui-btn--raised">Burn them all?</a><br><br><br><br><br><br>
 
 <table class="mui-table mui-table--bordered">
   <thead>
     <tr>
+      <th>Disrupted</th>
       <th>Trail</th>
       <th>Name</th>
       <th>Stop Trail</th>
@@ -23,11 +23,12 @@
   <tbody>
     {% for trail in trails['trailList'] %}
     <tr>
+      <td>{{ trail_status.disrupted(trail['Name'], trail['TrailARN']) }}</td>
       <td>{{ trail['TrailARN'] }}</td>
       <td>{{ trail['Name'] }}</td>
-      <td><button class="mui-btn mui-btn--primary">Stop</button></td>
-      <td><button class="mui-btn mui-btn--accent">Delete</button></td>
-      <td><button class="mui-btn mui-btn--danger">Encrypt</button></td>
+      <td><button class="mui-btn mui-btn--primary" onClick="parent.location='/disrupt/{{ trail['Name'] }}/stop'">Stop</button></td>
+      <td><button class="mui-btn mui-btn--accent" onClick="parent.location='/disrupt/{{ trail['Name'] }}/delete'">Delete</button></td>
+      <td><button class="mui-btn mui-btn--danger" onClick="parent.location='/disrupt/{{ trail['Name'] }}/encrypt'">Encrypt</button></td>
     </tr>
     {% endfor %}
   </tbody>

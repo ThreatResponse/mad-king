@@ -76,3 +76,20 @@ class CloudTrail(object):
             includeShadowTrails=True
         )
         return response
+
+    def disrupted(self, trail, trailArn):
+
+        response = self.client.get_trail_status(
+            Name=trailArn
+        )
+
+        description = self.client.describe_trails(
+            trailNameList=[
+                trail
+            ]
+        )
+
+        if response['IsLogging'] == False or description['trailList'][0]['KmsKeyId'] != None:
+            return True
+        else:
+            return False

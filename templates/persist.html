@@ -4,18 +4,28 @@
 <div class="mui--appbar-height"></div>
 <br>
 <br>
-<div class="mui--text-display2">AWS Token Based Persistence</div>
+<div class="mui--text-display2">AWS Secret Based Persistence</div>
 <br>
 <br>
-<button class="mui-btn mui-btn--raised">Burn them all?</button>
-<br><br><br>
+<a href="/burn/all" class="mui-btn mui-btn--raised">Burn them all?</a><br><br><br>
+<h3> Your Temporary Credentials ( in case you need to burn them all ) <h3>
+
+<div class="mui--text-display5">
+<pre style="text-align: left"><code>
+[default]
+region = us-west-2
+aws_access_key_id = {{ sts_token['Credentials']['SecretAccessKey'] }}
+aws_secret_access_key = {{ sts_token['Credentials']['AccessKeyId'] }}
+aws_session_token = {{ sts_token['Credentials']['SessionToken'] }}
+</code></pre>
+</div>
 
 <div class="mui--text-display2">
 <table class="mui-table mui-table--bordered">
   <thead>
     <tr>
       <th>User</th>
-      <th>Get-New StS Credential?</th>
+      <th>Get-New IAM Credential?</th>
     </tr>
     <tbody>
       {% for user in persist.users %}
