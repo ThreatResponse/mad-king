@@ -18,6 +18,10 @@ def disrupt():
     trails = inventory.CloudTrail().get_trails()
     return render_template('disrupt.html', trails=trails)
 
+@app.route('/persist')
+def persist():
+    return render_template('persist.html')
+
 # We only need this for local development.
 if __name__ == '__main__':
     app.run()
